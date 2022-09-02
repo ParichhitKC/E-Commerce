@@ -20,9 +20,16 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(category::class);
-    } public function File()
+    }
+    public function File()
     {
         return $this->belongsTo(File::class);
+    }
+ public function Order()
+    {
+        return $this->hasOne(File::class);
+
+
     }
 
 }

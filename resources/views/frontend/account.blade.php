@@ -6,16 +6,27 @@
     <div class="forms">
         <div class="form login">
             <span class="title">Login</span>
-
-            <form action="#">
+            <form method="post" action="{{route('login')}}">
+                @csrf
                 <div class="input-field">
-                    <input type="text" placeholder="Enter your email" required>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
                     <i class="uil uil-envelope icon"></i>
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
                 <div class="input-field">
-                    <input type="password" class="password" placeholder="Enter your password" required>
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                     <i class="uil uil-lock icon"></i>
                     <i class="uil uil-eye-slash showHidePw"></i>
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
 
                 <div class="checkbox-text">
@@ -28,7 +39,8 @@
                 </div>
 
                 <div class="input-field button">
-                    <input type="button" value="Login Now">
+{{--                    <input type="button" value="Login Now">--}}
+                    <button type="submit">{{('login')}}</button>
                 </div>
             </form>
 

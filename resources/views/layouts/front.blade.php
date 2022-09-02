@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -20,8 +23,21 @@
             <li><a href="about">About</a></li>
             <li><a href="contact">Contact</a></li>
             <li><a href="account">Account</a></li>
+            <li><a href="Profile">Profile</a></li>
             <li id="lg-bag"><a href="cart"><i class="fa-solid fa-bag-shopping"></i></a></li>
             <a href="#" id="close"><i class="fa fa-times"></i></a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
         </ul>
     </div>
 
@@ -91,5 +107,6 @@
 
 <script src="{{asset('assets/js/script.js')}}"></script>
 <script src="https://kit.fontawesome.com/4ce78e809b.js" crossorigin="anonymous"></script>
+@yield('scripts')
 </body>
 </html>

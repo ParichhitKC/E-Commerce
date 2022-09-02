@@ -61,7 +61,7 @@
                     </div>
                     <h4>${{$product->price}}</h4>
                 </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
+                <a href="{{ route('cart.store',$product->id)}}"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
             @endforeach
 {{--            <div class="pro">--}}
@@ -370,4 +370,27 @@
             <button class="button-normal">Sign Up</button>
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+
+        $(".update-cart").change(function (e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            $.ajax({
+                url: '{{ route('cart.update') }}',
+                method: "patch",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: ele.parents("tr").attr("data-id"),
+                    quantity: ele.parents("tr").find(".quantity").val()
+                },
+                success: function (response) {
+                    window.location.reload();
+                }
+            });
+        });
+    </script>
 @endsection

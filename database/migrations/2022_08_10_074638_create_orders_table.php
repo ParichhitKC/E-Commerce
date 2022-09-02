@@ -14,8 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+
+            $table->unsignedInteger('user_id');
+            $table->decimal('order_total');
+            $table->string('order_status');
+            $table->boolean('is_paid');
             $table->timestamps();
+
         });
     }
 

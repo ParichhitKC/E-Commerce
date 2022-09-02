@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cart;
+use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 
 class KhaltiController extends Controller
@@ -37,10 +40,33 @@ class KhaltiController extends Controller
     }
 
     public function store(Request $request)
+
     {
+        $cart= Cart::all();
+        $total=0;
+foreach($cart as $c)
+{
+    $total+=$c->product*$c->quantity;
+}
+        $order = new Order();
+        $order->user_id = Auth::user()->id;
+        $order->order_total = $request['Total'];
+        $order->is_paid = 1;
+        $order->payment_method = 'Khalti';
+        $order->order_status = "Order Placed";
+        $order->save();
+
+        foreach ($cart as $cartitem){
+            $orderItem = new OrderItem();
+            $orderItem->order_id = $order->id;
+            $cartitem->product;
+            $cartitem->price;
+            $cartitem->quantity;
+        }
         // $response = $request->response;
-        // store the data to database here
+        // store the data to database here\
         return response()->noContent();
+
     }
 
 }
