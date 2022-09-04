@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use App\Models\Order;
 use Auth;
 use App\Models\User;
 class FrontendController extends Controller
@@ -32,22 +32,25 @@ class FrontendController extends Controller
     }
     public function Profile(){
         $user =  User::find(Auth::user()->id);
-        return view('frontend.profile',compact('user'));
+        $order = Order::where('user_id',Auth::user()->id)->get();
+        // dd($order);
+        return view('frontend.profile',compact('user','order'));
+
     }
-    public function save(Request $request, $id)
+    public function save(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
-            'permission' => 'required',
+            'address' => 'required',
         ]);
-
-        $user = User::find($id);
+        
+        $user = User::find(Auth::user()->id);
         $user->name = $request->input('name');
-        $user->address = $request->input('Address');
+        $user->address = $request->input('address');
         $user->save();
 
 
-        return redirect()->route('frontend.profile')
+        return redirect()->route('Profile')
             ->with('success','Profile updated successfully');
     }
     public function cart(){

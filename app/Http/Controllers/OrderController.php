@@ -39,6 +39,7 @@ class OrderController extends Controller
             $order->save();
             return redirect()->route('AdminorderView');
         }
+        
 
         public function AdminOrderView()
         {
@@ -62,5 +63,10 @@ class OrderController extends Controller
         $order = order::where('user_id',Auth::user()->id);
         return view('order.cust',compact('order'));
 
+    }
+    public function Cust()
+    {
+        $order = order::where('user_id',Auth::user()->id);
+        return view('frontend.profile',compact('order'));
     }
 }
