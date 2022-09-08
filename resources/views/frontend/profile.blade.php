@@ -39,15 +39,19 @@
     </tr>
     </thead>
     @foreach($order as $item)
-        <form method="post" action="{{route('Cust')}}">
-            @csrf
+       
         <tr>
             <td>{{$item->user->name}}</td>
             <td>{{$item->order_total}}</td>
             <td>{{$item->updated_at}}</td>
             <td>{{$item->created_at}}</td>
-        </tr>
+            <td>
+               <form method="post" action="{{route('Cust')}}">
+              @csrf
+              <button>View Details</button>
         </form>
+      </td>
+    </tr>
     @endforeach
   </table>
 

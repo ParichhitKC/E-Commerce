@@ -37,7 +37,7 @@ Route::post('update-cart', [FrontendController::class, 'updateCart'])->name('car
 Route::post('cart', [FrontendController::class, 'removeCart'])->name('cart.remove');
 Route::post('clear', [FrontendController::class, 'clearAllCart'])->name('cart.clear');
 Route::post('Order', [OrderController::class, 'Order'])->name('order');
-Route::post('CustOrder', [OrderController::class, 'CustOrder'])->name('order.cust');
+// Route::post('CustOrder', [OrderController::class, 'CustOrder'])->name('order');
 Route::post('Cust', [OrderController::class, 'Cust'])->name('Cust');
 Route::any('Adminorder', [OrderController::class, 'AdminorderView'])->name('AdminorderView');
 Route::post('Adminorder/{id}', [OrderController::class, 'Adminorder'])->name('Adminorder');

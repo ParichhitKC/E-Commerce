@@ -1,11 +1,10 @@
 <h1>Billing Details</h1>
 
-
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-        <input type=radio name="payment-type" value="cash on delivery">Cash on Delivery</input>
+        <input type=radio name="payment-type" value="cash on delivery">Cash on Deliver
     </div>
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-        <input type=radio name="payment-type" value="khalti">Khalti</input>
+        <input type=radio name="payment-type" value="khalti">Khalti
     </div>
    
      <div class="form-group row">

@@ -117,7 +117,7 @@
 {{--                <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button>--}}
 
         </table>
-        <form action="{{route('order.cust')}}" method="post">
+        <form action="{{route('order')}}" method="post">
             @csrf
             <input type="hidden" value="{{ $total }}" name="Total">
         <button class="button-normal">Proceed to checkout</button>

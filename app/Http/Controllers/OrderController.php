@@ -19,15 +19,20 @@ class OrderController extends Controller
         $order->payment_method = 'khalti';
         $order->order_status='1' ;
         $order->save();
-
-        $cart = Cart::all();
+    
+        $cart = session()->get('cart');
+        // dd($cart);
         foreach ($cart as $cartitem) {
             $orderItem = new OrderItem();
             $orderItem->order_id = $order->id;
-            $cartitem->product;
-            $cartitem->price;
-            $cartitem->quantity;
+            $orderItem->product = $cartitem['name'];
+            $orderItem->price= $cartitem['price'];
+            $orderItem->quantity= $cartitem['quantity'];
+            $orderItem->save();
+                
         }
+
+        return view('order.cust',compact('order'));
     }
 
         public function AdminOrder(Request $request, $id)
@@ -66,7 +71,10 @@ class OrderController extends Controller
     }
     public function Cust()
     {
-        $order = order::where('user_id',Auth::user()->id);
-        return view('frontend.profile',compact('order'));
+        $order = Order::where('user_id',Auth::user()->id)->get();
+    
+        // dd(Auth::user());
+        return view('order.cList',compact('order'));
     }
+    
 }
